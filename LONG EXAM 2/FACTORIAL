@@ -1,0 +1,53 @@
+// FACTORIAL RECURSION WITH IMPLEMENTATION OF JAVA EXCEPTIONS
+// Prepared by Gonzaga, Danga, and Bautista of COM221
+
+// This program finds the factorial of user-defined positive numbers ranging from 1 to 100.
+
+import java.util.InputMismatchException; 
+import java.util.Scanner; 
+
+public class FACTORIAL { // main class
+
+	public static void main(String[] args) { // main method
+	   
+		int input; // declaration of variable to be factored
+	   
+	    Scanner scan_input = new Scanner(System.in); // creation of input scanner
+	    
+	  
+	    try { // we have taken the input in try, to get an exception input catch    
+	    	System.out.println("Good Day! \nWhat number do you want to factor?"); // asks user to input value to be factored
+	    	input = scan_input.nextInt(); // takes value that the user had input	    
+	    	System.out.println(input + "! " + "is " + factor(input) + "." ); // prints the factor of positive integer input
+	    
+	    }
+	    
+	    catch(InputMismatchException e){ // catches input that does not match the pattern or is out of range for the expected type which is INT
+	    	
+	        System.out.println("Ops! The entered value is not an integer."); // prints the statement for non-int exception
+
+	    }
+	    
+	    catch(ArithmeticException e){ // catches a non-positive or negative input
+	    	System.out.println(e.getMessage()); 
+	    }
+
+	}
+	
+	// factorial of numbers may consist of decimal and more digits, thus; we used double since it is the perfect data type to store those.  
+	private static double factor(double value) { // recursive method 
+		// base case
+		if (value < 0) 
+			throw new ArithmeticException("Ops! The entered value is a negative integer."); // prints the statement for negative integer exception
+    
+		if (value > 100) 
+			throw new ArithmeticException("Ops! The entered value is more than 100.");// prints the statement for integers more than 100
+			
+		if(value==0 || value==1){ // factorial of both 0 and 1 is 1
+			return 1;
+    
+    }
+			return  value*factor(value-1); // general case
+    
+	}
+}
